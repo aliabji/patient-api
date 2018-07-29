@@ -1,0 +1,1 @@
+json.extract! patient, :first, :middle, :last, :weight, :height, :MRN

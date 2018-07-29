@@ -1,7 +1,8 @@
 class PatientsController < ApplicationController
     def index 
-        @patients = Patient.all
-    end
+        patients = Patient.all
+        render json: {status: 'SUCCESS', message: 'Loaded all posts', data: patients}, status: :ok
+    end 
 
     def show
     end
@@ -9,9 +10,9 @@ class PatientsController < ApplicationController
     def create
         @patient = Patient.new(patient_params)
         if @patient.save
-            render :show, status :created, location: @patient
+            render json: {status: 'SUCCESS', message: 'Patient created sucessfully'}, status: :ok
         else
-            render json: @patient.errors, status :unprocessable_entity
+            render json: {status: 'FAILED', message: 'Patient not saved'}, status: :error
         end
     end
 

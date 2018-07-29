@@ -6,7 +6,8 @@ class PatientsController < ApplicationController
 
     def show
         @patient = Patient.find params[:id]
-        render json: {status: 'SUCCESS', data: @patient}, status: :ok
+        @encounter = Encounter.where("patient_id = ?", params[:id])
+        render json: {status: 'SUCCESS', patient: @patient, encounter: @encounter}, status: :ok
     end
 
     def create

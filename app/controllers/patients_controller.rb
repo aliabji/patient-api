@@ -27,7 +27,11 @@ class PatientsController < ApplicationController
     end
 
     def destroy
-        @patient.destroy
+        if Patient.destroy(params[:id])
+            render json: {status: 'SUCCESS', message: 'Patient Deleted Sucessfully'}, status: :ok
+        else
+            render json: {status: 'FAILED', message: 'Patient Delete Failed'}, status: :error
+        end
     end
 
     private

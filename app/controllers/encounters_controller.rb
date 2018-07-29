@@ -27,7 +27,11 @@ class EncountersController < ApplicationController
     end
 
     def destroy
-        @encounter.destroy
+        if Encounter.destroy(params[:id])
+            render json: {status: 'SUCCESS', message: 'Encounter Deleted Sucessfully'}, status: :ok
+        else
+            render json: {status: 'FAILED', message: 'Encounter Delete Failed'}, status: :error
+        end
     end
 
     private

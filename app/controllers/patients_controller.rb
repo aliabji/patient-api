@@ -11,6 +11,7 @@ class PatientsController < ApplicationController
     end
 
     def create
+        puts("params logging", patient_params)
         @patient = Patient.new(patient_params)
         if @patient.save
             render json: {status: 'SUCCESS', message: 'Patient created sucessfully'}, status: :ok
@@ -40,6 +41,6 @@ class PatientsController < ApplicationController
         @patient = Patient.find(params[:id])  
     end
     def patient_params
-        params.require(:patient).permit(:first, :middle, :last, :weight, :height, :MRN)
+        params.permit(:first, :middle, :last, :weight, :height, :MRN)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_210610) do
+ActiveRecord::Schema.define(version: 2018_07_30_221050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,5 +34,5 @@ ActiveRecord::Schema.define(version: 2018_07_29_210610) do
     t.string "MRN", null: false
   end
 
-  add_foreign_key "encounters", "patients"
+  add_foreign_key "encounters", "patients", on_delete: :cascade
 end

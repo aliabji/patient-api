@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
     end
 
     def update
-        if Patient.update(patient_params)
+        if Patient.where("id = ?", params[:id]).update(patient_params)
             render json: {status: 'SUCCESS', message: 'Patient Updated Sucessfully'}, status: :ok
         else
             render json: {status: 'FAILED', message: 'Patient Update Failed'}, status: :error

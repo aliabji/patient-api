@@ -19,7 +19,7 @@ class EncountersController < ApplicationController
     end
 
     def update
-        if @encounter.update(encounter_params)
+        if Encounter.where("id = ?", params[:id]).update(encounter_params)
            render json: {status: 'SUCCESS', message: 'Encounter Updated Successfully'}
         else
             render json: {status: 'FAILED', message: 'Encounter Update Failed'}
